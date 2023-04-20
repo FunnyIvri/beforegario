@@ -1,6 +1,6 @@
 import pygame
 import keyboard
-
+#here is my code
 root_size = [800, 800]
 root = pygame.display.set_mode(root_size)
 clock = pygame.time.Clock()
@@ -42,6 +42,7 @@ class Player:
             self.player_rect.y += -6
         elif self.player_rect.y < 200:
             self.player_rect.y += 10
+
     def walls(self):
         player_rect = self.player_rect
         if player_rect.left <= 0 or player_rect.right >= root[0]:
@@ -50,9 +51,10 @@ class Player:
         if player_rect.top <= 0 or player_rect.bottom >= root[1]:
             dy = -1 * self.speed
 
-
         self.player_rect.x += dx
         self.player_rect.y += dy
+
+
 run = True
 
 player = Player("player.png", 2, 1, [200, 200])
