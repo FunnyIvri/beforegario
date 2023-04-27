@@ -38,37 +38,39 @@ class Player:
         self.player_rect.y += dy
 
     def gravity(self):
-        for platform in platforms:
-            print(player.player_rect.x)
-            print(platform.platform_rect.centerx)
-            if not platform.platform_rect.colliderect(player.player_rect):
-                player.player_rect.y += 10
 
-        #print(self.player_rect.y)
-        #if self.player_rect.y > 200:
+        onplatform = False
+        for platform in platforms:
+            if platform.platform_rect.colliderect(player.player_rect):
+                onplatform = True
+                break
+        if not onplatform:
+            player.player_rect.y += 10
+        # print(self.player_rect.y)
+        # if self.player_rect.y > 200:
         #    self.player_rect.y += -6
-        #elif self.player_rect.y < 200:
+        # elif self.player_rect.y < 200:
         #    self.player_rect.y += 10
-#
+
+    #
     def walls(self):
-        dx =0
-        dy=0
+
         player_rect = self.player_rect
         if player_rect.left <= 0:
-            player_rect.x = root_size[0]
-        elif player_rect.right >= root_size[0]:
-            dx = -6 * self.speed
-        if player_rect.top <= 0 or player_rect.bottom >= root_size[1]:
-            dy = -6 * self.speed
+            player_rect.x = root_size[0] - 100
 
-        self.player_rect.x += dx
-        self.player_rect.y += dy
+        elif player_rect.right >= root_size[0]:
+            player_rect.x = 0
+            player_rect.y = player_rect.y - 10
+
+        self.player_rect = player_rect
 
 
 class Platform:
-    def __init__(self, image, pos):
+    def __init__(self, image, pos, size):
         self.image = image
         self.platform = pygame.image.load(self.image).convert_alpha()
+        self.platform = pygame.transform.scale(self.platform, size)
         self.platform_rect = self.platform.get_rect()
         self.platform_rect.centerx = pos[0]
         self.platform_rect.centery = pos[1]
@@ -79,8 +81,9 @@ class Platform:
 
 run = True
 
-player = Player("player.png", 50, 100, [200, 200])
-platforms.append(Platform("platform.png", [200, 400]))
+player = Player("player.png", 15, 150, [200, 200])
+platforms.append(Platform("platform.png", [400, 200], [150, 38]))
+platforms.append(Platform("platform.png", [400, 500], [root_size[0], 38]))
 while run:
     root.fill("black")
     player.show()
