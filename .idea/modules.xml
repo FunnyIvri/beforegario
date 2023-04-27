@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/beforegario.iml" filepath="$PROJECT_DIR$/.idea/beforegario.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pysnake/.idea/pysnake.iml" filepath="$PROJECT_DIR$/../pysnake/.idea/pysnake.iml" />
     </modules>
   </component>
 </project>
