@@ -10,7 +10,8 @@ run = True
 
 
 class Player:
-    def __init__(self, image, speed, jump_height, start_pos):
+    def __init__(self, image, speed, jump_height, start_pos, gravity):
+        self.gravity = gravity
         self.image = image
         self.speed = speed
         self.jump_height = jump_height
@@ -25,35 +26,15 @@ class Player:
 
     def move(self):
         dx = 0
-        dy = 0
+        dy = self.gravity
         if keyboard.is_pressed("left"):
             dx = -self.speed
         elif keyboard.is_pressed("right"):
             dx = self.speed
-        # if keyboard.is_pressed("up"):
-        #    for platform in platforms:
-        #        if self.player_rect.colliderect(platform.rect):
-        #            dy = -self.jump_height
 
         self.player_rect.x += dx
         self.player_rect.y += dy
 
-    # def gravity(self):
-    #
-    #    onplatform = False
-    #    for platform in platforms:
-    #        if platform.rect.colliderect(player.player_rect):
-    #            onplatform = True
-    #            break
-    #    if not onplatform:
-    #        player.player_rect.y += 10
-    #    # print(self.player_rect.y)
-    #    # if self.player_rect.y > 200:
-    #    #    self.player_rect.y += -6
-    #    # elif self.player_rect.y < 200:
-    #    #    self.player_rect.y += 10
-
-    #
     def walls(self):
 
         player_rect = self.player_rect

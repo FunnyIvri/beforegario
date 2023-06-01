@@ -42,7 +42,7 @@ def loop():
 
             self.rect.x += dx
             self.rect.y += dy
-            if not keyboard.is_pressed("up"):return scroll 
+            if not keyboard.is_pressed("up"): return scroll
 
         def walls(self):
 
